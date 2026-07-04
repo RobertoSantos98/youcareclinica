@@ -1,8 +1,19 @@
 import Image from "next/image";
-import { Calendar, Calendar1, ChevronRight, Cross, HandHeart, ThumbsUp, UserSearch } from 'lucide-react'
+import { Calendar, Calendar1, ChevronLeft, ChevronRight, Cross, HandHeart, ThumbsUp, UserSearch } from 'lucide-react'
 import Link from "next/link";
 
 export default function Home() {
+
+  const porquenos = [
+    { id: "01", title: "Cuidado Compreensivo", label: "Da rotina do Checkups a tratamentos avançados, nós damos cobertura", img: "https://clinicasaudecampinas.com.br/wp-content/uploads/2022/08/ENDOCRINOLOGISTA-768x512.jpg", link: "" },
+    { id: "02", title: "Serviços Especializados", label: "Cuidado Especializado e com a mais recente tecnologia do mercado", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIqluJn6or28kRzMsJVv8xggkK_-2h9bXSOwW0LBdaJ3jhwnLMvCLoiO4&s=10", link: "" },
+    { id: "03", title: "Tecnologia de Ponta", label: "Equipamentos modernos", img: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=600", link: "#" },
+    { id: "04", title: "Atendimento Rápido", label: "Sem filas de espera", img: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=600", link: "#" },
+  ]
+  
+  
+
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 antialiased">
 
@@ -90,6 +101,59 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+        </div>
+      </section>
+
+      <section className="w-full bg-slate-100">
+        <div className="max-w-7xl mx-auto gap-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-8 py-16">
+
+          <div className="flex flex-col w-full items-start p-4 h-130 justify-around">
+            <p className="text-slate-600 text-sm">Nós oferecemos medicamentos com a mais alta modernidade tecnologica e personalizada para ajudar você a vive com saúde</p>
+
+            <h2 className="md:text-4xl text-2xl font-bold text-emerald-900">Sua Saúde é nossa Prioridade</h2>
+
+            <Link href={"#"} className="flex p-1 gap-4 bg-emerald-900 font-bold text-sm rounded-2xl pl-6 text-white items-center">
+              Leia Mais
+              <div className="bg-white items-center justify-center flex p-2 rounded-xl">
+                <ChevronRight className="text-emerald-900 w-5 h-5" />
+              </div>
+            </Link>
+          </div>
+
+          {porquenos.map((item) => (
+            <div key={item.id} className="flex flex-col w-full items-start h-130 justify-end relative overflow-hidden rounded-2xl ">
+              <Image fill className="object-cover" alt="Foto1Sobre" src={item.img} />
+              <div className="bg-linear-to-t from-black/70 to-transparent absolute inset-0 z-30 w-full h-full" />
+
+              <div className="absolute w-full text-white flex flex-col md:text-4xl text-2xl font-bold gap-4 items-start p-6 z-40">
+                {item.title}
+                <span className="text-xs text-slate-300 font-medium">{item.label}</span>
+                <div className="flex w-full justify-between">
+                  <Link href={item.link} className="p-1 flex text-sm bg-emerald-900 items-center pl-4 gap-4 rounded-2xl border border-white/20">
+                    Leia Mais
+                    <div className="bg-white p-2 rounded-xl">
+                      <ChevronRight className="w-5 h-5 text-emerald-900" />
+                    </div>
+                  </Link>
+
+                  <span className="text-6xl font-black absolute right-2 bg-linear-to-t from-transparent via-slate-400 to-slate-200 bg-clip-text text-transparent">{item.id}</span>
+
+                </div>
+              </div>
+            </div>
+          ))}
+
+          <div className="flex gap-2 self-end pt-4">
+          <button className="p-3 cursor-pointer border rounded-xl border-slate-300 bg-white hover:bg-slate-50 transition-colors text-slate-600 shadow-sm">
+            <ChevronLeft className="h-5 w-5"/>
+          </button>
+          <button className="p-3 border rounded-xl border-slate-300 bg-white hover:bg-slate-50 transition-colors text-slate-600 shadow-sm">
+            <ChevronRight className="h-5 w-5"/>
+          </button>
+        </div>
+
+
 
         </div>
       </section>
