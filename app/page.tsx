@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Calendar, Calendar1, ChevronLeft, ChevronRight, Cross, HandHeart, ThumbsUp, UserSearch } from 'lucide-react'
+import { Activity, Bandage, Blocks, Calendar, Calendar1, Calendar1Icon, ChevronLeft, ChevronRight, Cross, Droplets, HandHeart, Hospital, ThumbsUp, UserSearch } from 'lucide-react'
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -12,6 +12,14 @@ export default function Home() {
     { id: "02", title: "Serviços Especializados", label: "Cuidado Especializado e com a mais recente tecnologia do mercado", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIqluJn6or28kRzMsJVv8xggkK_-2h9bXSOwW0LBdaJ3jhwnLMvCLoiO4&s=10", link: "" },
     { id: "03", title: "Tecnologia de Ponta", label: "Equipamentos modernos", img: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=600", link: "#" },
     { id: "04", title: "Atendimento Rápido", label: "Sem filas de espera", img: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=600", link: "#" },
+  ]
+
+  const nossosServicos = [
+    { title: "Medicina Geral", icone: <Hospital /> },
+    { title: "Pediatria", icone: <Blocks /> },
+    { title: "Dermatologia", icone: <Bandage /> },
+    { title: "Cardiologia", icone: <Activity /> },
+    { title: "Serviços Laborátoriais", icone: <Droplets /> },
   ]
 
   const carroselRef = useRef<HTMLDivElement>(null);
@@ -214,37 +222,95 @@ export default function Home() {
 
           </div>
 
-          <div className="sm:w-1/2 w-full self-center gap-4 flex flex-col">
-            <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-slate-200 hover:border-slate-300">
+          <div className="sm:w-1/2 w-full self-center gap-4 flex flex-col py-8">
+            <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-blue-100 hover:border-blue-300">
               Especialidades que oferecemos
-              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-black">
+              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-blue-950">
                 12+
                 <span className="text-xs font-medium text-slate-600">Anos de experiência</span>
               </div>
             </div>
 
-            <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-slate-200 hover:border-slate-300">
+            <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-blue-100 hover:border-blue-300">
               Especialista que sua famiia pode confiar.
-              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-black">
+              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-blue-950">
                 80+
                 <span className="text-xs font-medium text-slate-600">Médicos Experiêntes</span>
               </div>
             </div>
 
-            <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-slate-200 hover:border-slate-300">
+            <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-blue-100 hover:border-blue-300">
               Cuidado personalizados e tecnologias avançadas
-              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-black">
+              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-blue-950">
                 3K+
                 <span className="text-xs font-medium text-slate-600">Pacientes Felizes</span>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-100 w-full overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col bg-white rounded-2xl gap-8 my-8">
+
+          <div className="flex w-full gap-8 p-8">
+            <div className="text-4xl font-bold flex flex-col gap-4 justify-around leading-tight">
+              <span className="text-[10px] font-medium text-slate-400 uppercase">Nossos Serviços</span>
+              Cuidados que cobre tudo o que precisa
+              <p className="text-lg font-medium text-slate-500">Nós oferecemos uma vasta opções de serviços para todo o suporte que sua saúde precisa em cada estágio dela.</p>
+            </div>
+
+            <div className="relative h-102 w-full rounded-xl overflow-hidden group">
+              <Image fill className="object-cover group-hover:scale-105 transition-all duration-500" alt="FotoDr" src="https://images.unsplash.com/photo-1666214277657-e60f05c40b04?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+            </div>
+          </div>
+
+          <div className="flex grid-cols-5 gap-4 w-full justify-center">
+            {nossosServicos.map((n) => (
+              <div key={n.title} className="p-4 border border-slate-300 rounded-xl w-42 h-54 items-center justify-center transition-all flex flex-col gap-4 hover:bg-slate-100 group">
+                <div className="bg-slate-100 rounded-md p-2 text-slate-700 group-hover:bg-slate-200 group-hover:p-4 group-hover:text-3xl transition-all duration-200">
+                  {n.icone}
+                </div>
+                <span className="font-bold text-slate-700 text-center">{n.title}</span>
+              </div>
+            ))}
+          </div>
+
+          <Link href={""} className="group hover:font-bold transition-all duration-300 p-1 flex text-sm justify-between text-white self-center mb-8 hover:bg-blue-800 bg-blue-900 items-center pl-4 gap-4 rounded-2xl border border-white/20">
+            Ver Todos os Serviços
+            <div className="bg-white p-2 rounded-xl duration-500 transition-all">
+              <ChevronRight className="w-5 h-5 text-blue-900" />
+            </div>
+          </Link>
 
 
         </div>
-
-
       </section>
+
+      <footer className="w-full bg-slate-100">
+        <div className="max-w-7xl mx-auto flex flex-col">
+
+          <div className="relative group shrink-0 h-100 w-full rounded-2xl overflow-hidden border border-blue-950/50">
+            <Image fill alt="imgFooter" className="object-cover group-hover:scale-105 duration-500 transition-all" src={"https://images.unsplash.com/photo-1589279003513-467d320f47eb?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}/>
+            <div className="absolute w-full h-full bg-linear-to-r from-blue-950 from-20% duration-300 transition-all via-25% via-blue-950 to-60%  to-transparent z-10" />
+
+            <div className="lg:w-64 text-blue-100 z-50 flex flex-col w-full justify-around h-full absolute py-8 mx-16 text-3xl font-bold">
+              <span className="text-xs text-slate-300 font-medium">Dê o Primeiro Passo</span>
+              Sua Saúde, <br /> Nossa Prioridade
+
+              <p className="text-xs font-normal">Agende uma consultoria hoje mesmo e nos deixe tomar conta de você.</p>
+
+              <Link href={""} className="hover:bg-slate-100 flex text-sm gap-4 sm:gap-2 bg-white text-blue-950 p-4 rounded-xl justify-center sm:justify-around items-center">
+                Agende uma Consulta 
+                <Calendar1Icon/>
+              </Link>
+            </div>
+            
+          </div>
+
+          <span className="py-2 mx-8 text-blue-950/90 text-xs mb-18">&copy; Copyright 2026 Roberto Santos. Todos os Direitos Reservados</span>
+        </div>
+      </footer>
 
     </div>
   );
