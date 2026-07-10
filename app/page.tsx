@@ -79,25 +79,22 @@ export default function Home() {
           </Link>
 
           <div className="md:hidden relative">
-            <button onClick={() => handleMenuMobile(menu)} className="md:hidden bg-blue-900/90 active:bg-blue-950 p-4 rounded-xl">
+            <button onClick={() => setMenu(!menu)} className="bg-blue-900/90 active:bg-blue-950 p-4 rounded-xl">
               <MenuIcon className="text-white w-6 h-6" />
             </button>
-            {menu ? (
-              <div className="absolute top-16 w-90 right-0 border border-blue-900/40 bg-blue-900/80 backdrop-blur-sm rounded-xl p-4">
-                <nav className=" flex flex-col gap-6 items-center font-medium">
-                  <Link href="/medicos" className="relative py-1 text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-900 after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300">Médicos</Link>
-                  <Link href="/sobrenos" className="relative py-1 text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-900 after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300">Sobre Nós</Link>
-                  <Link href="/paciente" className="relative py-1 text-white after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-900 after:scale-x-0 hover:after:scale-x-100 after:origin-left after:transition-transform after:duration-300">Paciente</Link>
-                </nav>
 
-                <Link href="#" className="items-center w-full flex mt-4 justify-center bg-blue-900 text-white font-bold py-2.5 px-5 rounded-xl gap-2 hover:-translate-y-0.5 hover:shadow-lg transition-all">
+            {menu && (
+              // Ajustado w-90 para w-[320px] por compatibilidade do Tailwind
+              <div className="absolute top-16 min-w-56 flex-1 right-0 border border-blue-900/40 bg-blue-900/80 backdrop-blur-md rounded-xl p-4 z-50">
+                <nav className="flex flex-col gap-6 items-center text-sm font-medium">
+                  <Link href="/medicos" className="text-white">Médicos</Link>
+                  <Link href="/sobrenos" className="text-white">Sobre Nós</Link>
+                  <Link href="/paciente" className="text-white">Paciente</Link>
+                </nav>
+                <Link href="#" className="text-sm items-center w-full flex mt-4 justify-center bg-white text-blue-900 font-bold py-2.5 px-5 rounded-xl gap-2">
                   Agendar Consulta
                   <Calendar className="w-5 h-5" />
                 </Link>
-              </div>
-            ) : (
-              <div className="hidden">
-
               </div>
             )}
           </div>
@@ -105,7 +102,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="relative min-h-screen flex items-center justify-center w-full overflow-hidden">
+      <section className="relative min-h-160 h-screen flex items-center justify-center w-full overflow-hidden">
 
 
         <div className="absolute inset-0 h-full w-full">
@@ -120,9 +117,9 @@ export default function Home() {
 
         </div>
 
-        <div className="z-30 relative flex flex-col justify-around md:flex-row w-full max-w-7xl mx-auto h-screen pt-28 pb-16 items-center px-8 gap-12">
+        <div className="z-30 relative flex flex-col md:justify-around justify-center md:flex-row w-full max-w-7xl mx-auto h-screen pt-28 pb-16 items-center px-8 gap-12">
 
-          <div className="absolute flex gap-2 pb-4 md:flex-row flex-col md:bottom-0 left-0 md:left-8 z-20 bg-white/40 backdrop-blur-md md:rounded-br-none rounded-r-2xl md:rounded-t-2xl p-2 border border-white/40 shadow-md">
+          <div className="absolute sm:flex gap-2 pb-4 md:flex-row flex-col md:bottom-0 hidden left-0 md:left-8 z-20 bg-white/40 backdrop-blur-md md:rounded-br-none rounded-r-2xl md:rounded-t-2xl p-2 border border-white/40 shadow-md">
             <Link href="#" className="bg-white text-blue-900 rounded-xl p-2.5 hover:bg-blue-50 transition-colors">
               <ThumbsUp className="h-5 w-5" />
             </Link>
@@ -134,8 +131,8 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="w-full md:w-1/2 md:justify-start flex">
-            <h1 className="text-3xl md:text-4xl text-center md:text-start text-blue-950 font-extrabold leading-tight">
+          <div className="w-full md:w-1/2 md:justify-start flex flex-1">
+            <h1 className="text-2xl sm:text-4xl text-center md:text-start text-blue-950 font-extrabold leading-tight">
               Nós somos uma clínica que coloca o <span className="text-blue-700">paciente em primeiro lugar</span>, dedicando-nos exclusivamente à sua saúde e bem-estar.
             </h1>
           </div>
@@ -234,17 +231,18 @@ export default function Home() {
 
             <div className="flex md:flex-row flex-col-reverse gap-4 p-4 relative ">
 
-              <div className="w-full group">
+              <div className="w-full group relative">
                 <div className="flex-1 h-64 relative rounded-xl overflow-hidden gap-8 border border-slate-200 transition-colors hover:border-slate-400 hover:shadow-md">
                   <Image priority fill alt="FotoPorquenos" className="object-cover" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070" />
                 </div>
 
-                <div className="absolute bottom-12 -left-2 bg-blue-900/40 border border-transparent group-hover:border-blue-900/30 group-hover:shadow-md translate-all group-hover:bottom-13 duration-300 backdrop-blur-md w-42 rounded-xl z-10 text-sm p-2 text-white">
+                {/* Corrigido: transition-all e w-44 */}
+                <div className="absolute bottom-6 -left-2 bg-blue-950/60 border border-white/10 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 transition-all duration-300 backdrop-blur-md w-44 rounded-xl z-20 text-xs p-3 text-white shadow-lg pointer-events-none">
                   Cuidado que você pode confiar e descansar.
                 </div>
               </div>
 
-              <div className="bg-slate-200 rounded-xl w-full py-4 gap-4 md:py-2 sm:w-1/4 px-4 flex flex-col justify-around border border-slate-200 transition-colors hover:border-slate-400 hover:shadow-lg">
+              <div className="bg-slate-200 rounded-xl w-full py-4 gap-4 md:py-2 md:w-1/4 px-4 flex flex-col justify-around border border-slate-200 transition-colors hover:border-slate-400 hover:shadow-lg">
                 <span className="text-xs text-slate-600">Chefe de Cirurgia</span>
                 <p className="font-extrabold text-slate-900 text-2xl">Dr. Sarah Muniz</p>
 
@@ -263,25 +261,25 @@ export default function Home() {
 
             <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-blue-100 hover:border-blue-300">
               Especialidades que oferecemos
-              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-blue-950">
+              <div className="md:text-4xl text-3xl font-bold flex flex-col items-end gap-2 w-32 text-blue-950">
                 12+
-                <span className="text-xs font-medium text-slate-600">Anos de experiência</span>
+                <span className="text-[10px] md:text-xs font-medium text-slate-600">Anos de experiência</span>
               </div>
             </div>
 
             <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-blue-100 hover:border-blue-300">
-              Especialista que sua famiia pode confiar.
-              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-blue-950">
+              Especialista que sua familia pode confiar.
+              <div className="md:text-4xl text-3xl font-bold flex flex-col items-end gap-2 w-32 text-blue-950">
                 80+
-                <span className="text-xs font-medium text-slate-600">Médicos Experiêntes</span>
+                <span className="text-[10px] md:text-xs font-medium text-slate-600">Médicos Experiêntes</span>
               </div>
             </div>
 
             <div className="border border-slate-200 p-4 text-xs text-slate-600 rounded-xl flex justify-between items-center group hover:bg-blue-100 hover:border-blue-300">
               Cuidado personalizados e tecnologias avançadas
-              <div className="text-4xl font-bold flex flex-col gap-2 w-32 text-blue-950">
+              <div className="md:text-4xl text-3xl font-bold flex flex-col items-end gap-2 w-32 text-blue-950">
                 3K+
-                <span className="text-xs font-medium text-slate-600">Pacientes Felizes</span>
+                <span className="text-[10px] md:text-xs font-medium text-slate-600">Pacientes Felizes</span>
               </div>
             </div>
           </div>
